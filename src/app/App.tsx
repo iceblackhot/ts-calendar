@@ -1,13 +1,17 @@
 import React from 'react';
 
-import './App.css';
+import {Calendar} from '../calendar/calendar';
 
-function App() {
+import './App.scss';
+
+export const App: React.FC = () => {
+  const [selectedDate, selectDate] = React.useState(new Date());
   return (
-    <div className="App">
-      <h2>Hello</h2>
-    </div>
+    <>
+      
+      <Calendar selectDate={selectDate} selectedDate={selectedDate} />
+    </>
   );
-}
+};
 
 export default App;
