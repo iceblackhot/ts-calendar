@@ -20,12 +20,43 @@ export const Calendar: React.FC<CalendarProps> = ({
 }) => {
   const {state, functions} = useCalendar({firstWeekDay, locale, selectedDate});
   const [open, setOpen] = React.useState(false);
-  const [rangeDate, setRangeDate] = React.useState([''])
+  // const [startRangeData, setStartRangeData] = React.useState(false);
+  // const [endRangeData, setEndRangeData] = React.useState(false);
+
+  const [period, setPeriod] = React.useState({startDate: false, endDate: false})
+
   const classNameWrapper = `calendar__wrapper${open ? ' active' : ''}`;
 
   const handleOpen = () => {
     setOpen(!open);
   };
+
+  // const startRange = () => {
+  //   setStartRangeData(!startRangeData)
+  //   console.log('start');
+  //   if(startRangeData === true) {
+  //     setEndRangeData(true)
+  //     console.log('end');
+  //   }
+    // const end = () =>{
+    // setEndRangeData(true)
+    // console.log('end');
+    // }
+    // end()
+  
+  // }
+
+ const click = () => {
+  if (!period.startDate || period.endDate) {
+    setPeriod({...period, startDate: true})
+    console.log('start '+ period.startDate);
+    
+    } else {
+      setPeriod({...period, endDate: true})
+      console.log('end ' + period.endDate);
+    }
+ }
+
 
   return (
     <div className="calendar">
@@ -76,11 +107,30 @@ export const Calendar: React.FC<CalendarProps> = ({
 
                   return (
                     <div
-                      aria-hidden
-                      onClick={() => {
-                        functions.setSelectedDay(day);
-                        selectDate(day.date);
-                      }}
+                      aria-hidden onClick={click}
+                      // onClick={() => {
+                       
+                      
+                     
+                        
+                        // startRange()
+                        // let selections = 2;
+                        // for(let i = 0; i <=selections; i++) {
+                        //   console.log(i);
+                          
+                          // if(selections === 1) {
+                          //   console.log('1')
+                          //   setStartRangeData(true)
+                          // } if(selections === 2) {
+                          //   console.log('2')
+                          //   setEndRangeData(true)
+                          //   selections +=0
+                          // }
+                        // }
+                       
+                      //   functions.setSelectedDay(day);
+                      //   selectDate(day.date);
+                      // }}
                       key={`${day.dayNumber}-${day.monthIndex}`}
                       className={[
                         'calendar__day',
